@@ -9,7 +9,7 @@ export function Hero() {
 
   const initials = businessName.trim()
     ? businessName.split(' ').map(w => w[0]).slice(0, 2).join('').toUpperCase()
-    : 'MR'
+    : 'PP'
 
   return (
     <main className="relative min-h-screen flex flex-col items-center justify-center px-4 pb-24 overflow-hidden">
@@ -67,7 +67,7 @@ export function Hero() {
 
         {/* Tagline */}
         <p className="text-lg text-center mb-8 max-w-xs text-white/80 drop-shadow">
-          El mejor sabor, en tu puerta 🚀
+          Salí del frasco, pedite una Pepi 🥒
         </p>
 
         {/* CTA */}
@@ -83,11 +83,11 @@ export function Hero() {
         <div className="mt-10 flex flex-col sm:flex-row gap-4 text-sm text-white/75">
           <div className="flex items-center gap-2">
             <MapPin size={16} className="text-white/90" />
-            <span>Av. Principal 1234, Ciudad</span>
+            <span>Lamadrid 731, Barrio Sur</span>
           </div>
           <div className="flex items-center gap-2">
             <Clock size={16} className="text-white/90" />
-            <span>Lun–Dom: 12:00 – 23:00</span>
+            <span>Mar–Dom: 20:30 – 00:30</span>
           </div>
         </div>
 
