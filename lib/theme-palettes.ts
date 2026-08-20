@@ -1,0 +1,159 @@
+export interface ThemePalette {
+  id: string
+  name: string
+  description: string
+  emoji: string
+  vars: Record<string, string>
+  /** Ruta de imagen de fondo por defecto del hero — /backgrounds/{id}.png */
+  defaultBg: string
+}
+
+export const PALETTES: ThemePalette[] = [
+  {
+    id: 'rojo-clasico',
+    name: 'Rojo Clásico',
+    description: 'Pizzería / italiana',
+    emoji: '🍕',
+    defaultBg: '/backgrounds/rojo-clasico.png',
+    vars: {
+      '--dr-primary': '#D93025',
+      '--dr-primary-dark': '#B71C1C',
+      '--dr-bg': '#F5F0E8',
+      '--dr-surface': '#FFFFFF',
+      '--dr-accent': '#C9A84C',
+      '--dr-text': '#1A1008',
+      '--dr-muted': '#8B7355',
+      '--dr-success': '#2E7D32',
+      '--dr-border': '#E5DDD0',
+    },
+  },
+  {
+    id: 'negro-dorado',
+    name: 'Negro y Dorado',
+    description: 'Parrilla premium',
+    emoji: '🥩',
+    defaultBg: '/backgrounds/negro-dorado.png',
+    vars: {
+      '--dr-primary': '#1A1A1A',
+      '--dr-primary-dark': '#000000',
+      '--dr-bg': '#F8F4EF',
+      '--dr-surface': '#FFFFFF',
+      '--dr-accent': '#C9A84C',
+      '--dr-text': '#1A1A1A',
+      '--dr-muted': '#5A5A5A',
+      '--dr-success': '#2E7D32',
+      '--dr-border': '#E0D9D0',
+    },
+  },
+  {
+    id: 'verde-fresco',
+    name: 'Verde Fresco',
+    description: 'Vegano / saludable',
+    emoji: '🥗',
+    defaultBg: '/backgrounds/verde-fresco.png',
+    vars: {
+      '--dr-primary': '#2D6A4F',
+      '--dr-primary-dark': '#1B4332',
+      '--dr-bg': '#F0F7F4',
+      '--dr-surface': '#FFFFFF',
+      '--dr-accent': '#52B788',
+      '--dr-text': '#1B4332',
+      '--dr-muted': '#4A7C59',
+      '--dr-success': '#40916C',
+      '--dr-border': '#C8E6C9',
+    },
+  },
+  {
+    id: 'azul-marino',
+    name: 'Azul Marino',
+    description: 'Marisquería',
+    emoji: '🦞',
+    defaultBg: '/backgrounds/azul-marino.png',
+    vars: {
+      '--dr-primary': '#1B3A6B',
+      '--dr-primary-dark': '#0D2137',
+      '--dr-bg': '#F0F4FA',
+      '--dr-surface': '#FFFFFF',
+      '--dr-accent': '#4A9EC4',
+      '--dr-text': '#0D1F3C',
+      '--dr-muted': '#3A5A8C',
+      '--dr-success': '#1565C0',
+      '--dr-border': '#C5D8F0',
+    },
+  },
+  {
+    id: 'naranja-vibrante',
+    name: 'Naranja Vibrante',
+    description: 'Hamburguesería',
+    emoji: '🍔',
+    defaultBg: '/backgrounds/naranja-vibrante.png',
+    vars: {
+      '--dr-primary': '#E85D04',
+      '--dr-primary-dark': '#C44D00',
+      '--dr-bg': '#FFF8F0',
+      '--dr-surface': '#FFFFFF',
+      '--dr-accent': '#FFBA08',
+      '--dr-text': '#240E00',
+      '--dr-muted': '#9B4200',
+      '--dr-success': '#2E7D32',
+      '--dr-border': '#FFD9B0',
+    },
+  },
+  {
+    id: 'morado-elegante',
+    name: 'Morado Elegante',
+    description: 'Cafetería / dessert bar',
+    emoji: '🍰',
+    defaultBg: '/backgrounds/morado-elegante.png',
+    vars: {
+      '--dr-primary': '#6B3FA0',
+      '--dr-primary-dark': '#4A1F7A',
+      '--dr-bg': '#F7F3FF',
+      '--dr-surface': '#FFFFFF',
+      '--dr-accent': '#B39DDB',
+      '--dr-text': '#2A0A4A',
+      '--dr-muted': '#7E57C2',
+      '--dr-success': '#2E7D32',
+      '--dr-border': '#D8CAFF',
+    },
+  },
+  {
+    id: 'terracota',
+    name: 'Terracota',
+    description: 'Bodegón / mediterráneo',
+    emoji: '🫙',
+    defaultBg: '/backgrounds/terracota.png',
+    vars: {
+      '--dr-primary': '#C4622D',
+      '--dr-primary-dark': '#993E1A',
+      '--dr-bg': '#FDF6F0',
+      '--dr-surface': '#FFFFFF',
+      '--dr-accent': '#E8A87C',
+      '--dr-text': '#3D1008',
+      '--dr-muted': '#9B6B4A',
+      '--dr-success': '#2E7D32',
+      '--dr-border': '#F0D8C0',
+    },
+  },
+  {
+    id: 'rosa-moderno',
+    name: 'Rosa Moderno',
+    description: 'Brunch / café trendy',
+    emoji: '🥂',
+    defaultBg: '/backgrounds/rosa-moderno.png',
+    vars: {
+      '--dr-primary': '#C2185B',
+      '--dr-primary-dark': '#880E4F',
+      '--dr-bg': '#FFF0F5',
+      '--dr-surface': '#FFFFFF',
+      '--dr-accent': '#F48FB1',
+      '--dr-text': '#3D0023',
+      '--dr-muted': '#AD4070',
+      '--dr-success': '#2E7D32',
+      '--dr-border': '#FFD0E5',
+    },
+  },
+]
+
+export const DEFAULT_PALETTE_ID = 'rojo-clasico'
+export const DEFAULT_PALETTE = PALETTES[0]
