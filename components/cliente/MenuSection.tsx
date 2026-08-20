@@ -1,13 +1,13 @@
 'use client'
 import { useState } from 'react'
-import { PRODUCTS, CATEGORY_LABELS, CATEGORY_EMOJIS } from '@/data/mock/products'
-import { ProductCategory } from '@/types/product'
+import { CATEGORY_LABELS, CATEGORY_EMOJIS, getProductGroups, ProductGroup } from '@/data/mock/products'
+import { ProductCategory, Product } from '@/types/product'
 import { useCart } from '@/contexts/CartContext'
 import { Minus, Plus, ShoppingCart, LayoutDashboard, BarChart2 } from 'lucide-react'
 import { PanelInfoModal } from './PanelInfoModal'
 import { DevFooter } from '@/components/landing/DevFooter'
 
-const CATEGORIES: ProductCategory[] = ['principales', 'entradas', 'bebidas', 'postres']
+const CATEGORIES: ProductCategory[] = ['hamburguesas', 'papas-combos', 'bebidas']
 
 type ModalPanel = 'admin' | 'owner' | null
 
@@ -16,11 +16,19 @@ interface Props {
 }
 
 export function MenuSection({ onCartOpen }: Props) {
-  const [activeCategory, setActiveCategory] = useState<ProductCategory>('principales')
+  const [activeCategory, setActiveCategory] = useState<ProductCategory>('hamburguesas')
   const [panelModal, setPanelModal] = useState<ModalPanel>(null)
   const { addItem, setQuantity, getQuantity, items } = useCart()
-  const products = PRODUCTS.filter(p => p.category === activeCategory)
+  const groups = getProductGroups(activeCategory)
   const totalItems = items.reduce((sum, i) => sum + i.quantity, 0)
+  // Tamaño elegido por grupo (solo aplica a grupos con más de 1 variante)
+  const [selectedSize, setSelectedSize] = useState<Record<string, string>>({})
+
+  function variantFor(group: ProductGroup): Product {
+    if (group.variants.length === 1) return group.variants[0]
+    const chosenId = selectedSize[group.key]
+    return group.variants.find(v => v.id === chosenId) ?? group.variants[0]
+  }
 
   return (
     <div className="min-h-screen pb-28" style={{ background: 'var(--dr-bg)' }}>
@@ -90,72 +98,94 @@ export function MenuSection({ onCartOpen }: Props) {
 
       {/* Product list */}
       <div className="max-w-2xl mx-auto px-4 py-4 space-y-3">
-        {products.map(product => {
+        {groups.map(group => {
+          const product = variantFor(group)
           const qty = getQuantity(product.id)
           return (
             <div
-              key={product.id}
-              className="rounded-2xl p-4 flex items-center gap-4 shadow-sm"
+              key={group.key}
+              className="rounded-2xl p-4 flex flex-col gap-3 shadow-sm"
               style={{ background: 'var(--dr-surface)' }}
             >
-              {/* Foto o emoji placeholder */}
-              <div
-                className="w-16 h-16 rounded-xl flex-shrink-0 flex items-center justify-center text-3xl overflow-hidden"
-                style={{ background: 'var(--dr-bg)' }}
-              >
-                {product.imageUrl
-                  ? <img src={product.imageUrl} alt={product.name} className="w-full h-full object-cover" />
-                  : (product.emoji || '🍽️')
-                }
-              </div>
+              <div className="flex items-center gap-4">
+                {/* Foto o emoji placeholder */}
+                <div
+                  className="w-16 h-16 rounded-xl flex-shrink-0 flex items-center justify-center text-3xl overflow-hidden"
+                  style={{ background: 'var(--dr-bg)' }}
+                >
+                  {group.imageUrl
+                    ? <img src={group.imageUrl} alt={group.name} className="w-full h-full object-cover" />
+                    : (group.emoji || '🍔')
+                  }
+                </div>
 
-              {/* Info */}
-              <div className="flex-1 min-w-0">
-                <p className="font-semibold text-sm" style={{ color: 'var(--dr-text)' }}>
-                  {product.name}
-                </p>
-                {product.description && (
-                  <p className="text-xs mt-0.5" style={{ color: 'var(--dr-muted)' }}>
-                    {product.description}
+                {/* Info */}
+                <div className="flex-1 min-w-0">
+                  <p className="font-semibold text-sm" style={{ color: 'var(--dr-text)' }}>
+                    {group.name}
                   </p>
-                )}
-                <p className="text-base font-bold mt-1" style={{ color: 'var(--dr-primary)' }}>
-                  ${product.price.toLocaleString('es-AR')}
-                </p>
-              </div>
+                  {group.description && (
+                    <p className="text-xs mt-0.5" style={{ color: 'var(--dr-muted)' }}>
+                      {group.description}
+                    </p>
+                  )}
+                  <p className="text-base font-bold mt-1" style={{ color: 'var(--dr-primary)' }}>
+                    ${product.price.toLocaleString('es-AR')}
+                  </p>
+                </div>
 
-              {/* Quantity controls */}
-              {qty > 0 ? (
-                <div className="flex items-center gap-2 flex-shrink-0">
-                  <button
-                    onClick={() => setQuantity(product.id, qty - 1)}
-                    className="w-8 h-8 rounded-full flex items-center justify-center transition-colors"
-                    style={{ background: 'var(--dr-bg)', color: 'var(--dr-primary)' }}
-                    aria-label={`Quitar ${product.name}`}
-                  >
-                    <Minus size={14} />
-                  </button>
-                  <span className="w-5 text-center font-bold text-sm" style={{ color: 'var(--dr-text)' }}>
-                    {qty}
-                  </span>
+                {/* Quantity controls */}
+                {qty > 0 ? (
+                  <div className="flex items-center gap-2 flex-shrink-0">
+                    <button
+                      onClick={() => setQuantity(product.id, qty - 1)}
+                      className="w-8 h-8 rounded-full flex items-center justify-center transition-colors"
+                      style={{ background: 'var(--dr-bg)', color: 'var(--dr-primary)' }}
+                      aria-label={`Quitar ${group.name}`}
+                    >
+                      <Minus size={14} />
+                    </button>
+                    <span className="w-5 text-center font-bold text-sm" style={{ color: 'var(--dr-text)' }}>
+                      {qty}
+                    </span>
+                    <button
+                      onClick={() => addItem(product)}
+                      className="w-8 h-8 rounded-full flex items-center justify-center text-white transition-colors"
+                      style={{ background: 'var(--dr-primary)' }}
+                      aria-label={`Agregar ${group.name}`}
+                    >
+                      <Plus size={14} />
+                    </button>
+                  </div>
+                ) : (
                   <button
                     onClick={() => addItem(product)}
-                    className="w-8 h-8 rounded-full flex items-center justify-center text-white transition-colors"
+                    className="w-8 h-8 rounded-full flex items-center justify-center text-white flex-shrink-0"
                     style={{ background: 'var(--dr-primary)' }}
-                    aria-label={`Agregar ${product.name}`}
+                    aria-label={`Agregar ${group.name}`}
                   >
-                    <Plus size={14} />
+                    <Plus size={16} />
                   </button>
+                )}
+              </div>
+
+              {/* Selector de tamaño — solo si el grupo tiene más de una variante */}
+              {group.variants.length > 1 && (
+                <div className="flex gap-1.5 flex-wrap">
+                  {group.variants.map(variant => (
+                    <button
+                      key={variant.id}
+                      onClick={() => setSelectedSize(s => ({ ...s, [group.key]: variant.id }))}
+                      className="px-3 py-1 rounded-full text-xs font-medium transition-colors"
+                      style={{
+                        background: product.id === variant.id ? 'var(--dr-primary)' : 'var(--dr-bg)',
+                        color: product.id === variant.id ? 'white' : 'var(--dr-text)',
+                      }}
+                    >
+                      {variant.sizeLabel}
+                    </button>
+                  ))}
                 </div>
-              ) : (
-                <button
-                  onClick={() => addItem(product)}
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-white flex-shrink-0"
-                  style={{ background: 'var(--dr-primary)' }}
-                  aria-label={`Agregar ${product.name}`}
-                >
-                  <Plus size={16} />
-                </button>
               )}
             </div>
           )
