@@ -4,10 +4,9 @@ import { Product, ProductCategory } from '@/types/product'
 import { X, Upload, Trash2 } from 'lucide-react'
 
 const CATEGORIES: { value: ProductCategory; label: string }[] = [
-  { value: 'principales', label: 'Principales' },
-  { value: 'entradas', label: 'Entradas' },
+  { value: 'hamburguesas', label: 'Hamburguesas' },
+  { value: 'papas-combos', label: 'Papas & Combos' },
   { value: 'bebidas', label: 'Bebidas' },
-  { value: 'postres', label: 'Postres' },
 ]
 
 interface Props {
@@ -20,7 +19,7 @@ export function ProductoModal({ product, onSave, onClose }: Props) {
   const [name, setName] = useState(product?.name ?? '')
   const [description, setDescription] = useState(product?.description ?? '')
   const [category, setCategory] = useState<ProductCategory>(
-    product?.category ?? 'principales'
+    product?.category ?? 'hamburguesas'
   )
   const [price, setPrice] = useState(String(product?.price ?? ''))
   const [emoji, setEmoji] = useState(product?.emoji ?? '')

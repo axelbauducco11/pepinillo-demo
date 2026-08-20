@@ -5,7 +5,7 @@ import { Product, ProductCategory } from '@/types/product'
 import { ProductoModal } from '@/components/admin/ProductoModal'
 import { Plus, Pencil, Trash2, Search } from 'lucide-react'
 
-const CATEGORIES: ProductCategory[] = ['principales', 'entradas', 'bebidas', 'postres']
+const CATEGORIES: ProductCategory[] = ['hamburguesas', 'papas-combos', 'bebidas']
 
 export default function ProductosPage() {
   const [products, setProducts] = useState<Product[]>(PRODUCTS)
