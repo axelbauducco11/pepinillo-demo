@@ -10,6 +10,24 @@ export interface ThemePalette {
 
 export const PALETTES: ThemePalette[] = [
   {
+    id: 'pepinillo-verde',
+    name: 'Pepinillo Verde',
+    description: 'Hamburguesería Pepinillo',
+    emoji: '🥒',
+    defaultBg: '/backgrounds/pepinillo-verde.png',
+    vars: {
+      '--dr-primary': '#1B4332',
+      '--dr-primary-dark': '#0F2A1F',
+      '--dr-bg': '#F7F3E8',
+      '--dr-surface': '#FFFFFF',
+      '--dr-accent': '#52B788',
+      '--dr-text': '#1B2A1F',
+      '--dr-muted': '#4A6355',
+      '--dr-success': '#2E7D32',
+      '--dr-border': '#DCD4BE',
+    },
+  },
+  {
     id: 'rojo-clasico',
     name: 'Rojo Clásico',
     description: 'Pizzería / italiana',
@@ -155,5 +173,5 @@ export const PALETTES: ThemePalette[] = [
   },
 ]
 
-export const DEFAULT_PALETTE_ID = 'rojo-clasico'
+export const DEFAULT_PALETTE_ID = 'pepinillo-verde'
 export const DEFAULT_PALETTE = PALETTES[0]
