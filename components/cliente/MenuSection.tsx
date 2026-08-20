@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { CATEGORY_LABELS, CATEGORY_EMOJIS, getProductGroups, ProductGroup } from '@/data/mock/products'
 import { ProductCategory, Product } from '@/types/product'
 import { useCart } from '@/contexts/CartContext'
+import { useTheme } from '@/contexts/ThemeContext'
 import { Minus, Plus, ShoppingCart, LayoutDashboard, BarChart2 } from 'lucide-react'
 import { PanelInfoModal } from './PanelInfoModal'
 import { DevFooter } from '@/components/landing/DevFooter'
@@ -19,6 +20,7 @@ export function MenuSection({ onCartOpen }: Props) {
   const [activeCategory, setActiveCategory] = useState<ProductCategory>('hamburguesas')
   const [panelModal, setPanelModal] = useState<ModalPanel>(null)
   const { addItem, setQuantity, getQuantity, items } = useCart()
+  const { heroBg } = useTheme()
   const groups = getProductGroups(activeCategory)
   const totalItems = items.reduce((sum, i) => sum + i.quantity, 0)
   // Tamaño elegido por grupo (solo aplica a grupos con más de 1 variante)
@@ -31,7 +33,15 @@ export function MenuSection({ onCartOpen }: Props) {
   }
 
   return (
-    <div className="min-h-screen pb-28" style={{ background: 'var(--dr-bg)' }}>
+    <div
+      className="min-h-screen pb-28"
+      style={{
+        backgroundImage: `linear-gradient(rgba(247,243,232,0.93), rgba(247,243,232,0.93)), url('${heroBg}')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+      }}
+    >
       {/* Sticky header */}
       <header
         className="sticky top-0 z-30 border-b shadow-sm"
