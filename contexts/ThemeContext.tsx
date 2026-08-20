@@ -32,7 +32,7 @@ function applyPalette(palette: ThemePalette) {
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [palette, setPaletteState] = useState<ThemePalette>(DEFAULT_PALETTE)
   const [businessName, setBusinessNameState] = useState('Pepinillo')
-  const [logoUrl, setLogoUrl] = useState<string | null>(null)
+  const [logoUrl, setLogoUrl] = useState<string | null>('/logo-pepinillo.jpg')
   const [customHeroBg, setCustomHeroBgState] = useState<string | null>(null)
 
   // Restore from localStorage on mount
