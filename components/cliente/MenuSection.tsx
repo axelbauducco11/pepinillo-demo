@@ -36,7 +36,7 @@ export function MenuSection({ onCartOpen }: Props) {
     <div
       className="min-h-screen pb-28"
       style={{
-        backgroundImage: `linear-gradient(rgba(247,243,232,0.93), rgba(247,243,232,0.93)), url('${heroBg}')`,
+        backgroundImage: `linear-gradient(rgba(247,243,232,0.4), rgba(247,243,232,0.4)), url('${heroBg}')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',

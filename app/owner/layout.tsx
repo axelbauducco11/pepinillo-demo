@@ -10,7 +10,7 @@ export default function OwnerLayout({ children }: { children: ReactNode }) {
     <div
       className="min-h-screen"
       style={{
-        backgroundImage: `linear-gradient(rgba(247,243,232,0.93), rgba(247,243,232,0.93)), url('${heroBg}')`,
+        backgroundImage: `linear-gradient(rgba(247,243,232,0.4), rgba(247,243,232,0.4)), url('${heroBg}')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',
