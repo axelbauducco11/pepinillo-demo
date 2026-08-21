@@ -31,6 +31,13 @@ const KPI_DATA: Record<Period, { ventas: number; pedidos: number; ticket: number
     mes: { ventas: 1280000, pedidos: 371, ticket: 3450, margen: 41 },
   }
 
+const TOP_PRODUCTO: Record<Period, { nombre: string; sizeLabel: string; unidades: number; emoji: string }> =
+  {
+    dia: { nombre: 'Cheeseburger', sizeLabel: 'Doble', unidades: 6, emoji: '🍔' },
+    semana: { nombre: 'Cheeseburger', sizeLabel: 'Doble', unidades: 34, emoji: '🍔' },
+    mes: { nombre: 'Megapepinillo', sizeLabel: 'Doble', unidades: 142, emoji: '🥒' },
+  }
+
 const RENTABILIDAD = [
   { name: 'Milanesa napolitana', precio: 3200, costo: 1100, margen: 66, unidades: 85, ganancia: 178500 },
   { name: 'Pollo al limón', precio: 3000, costo: 1050, margen: 65, unidades: 72, ganancia: 140400 },
@@ -61,6 +68,7 @@ export default function OwnerDashboard() {
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const kpi = KPI_DATA[period]
+  const topProducto = TOP_PRODUCTO[period]
   const totalGastos = gastos.reduce((sum, g) => sum + g.monto, 0)
   const gananciaNeta = kpi.ventas - totalGastos
   const top5 = [...RENTABILIDAD].sort((a, b) => b.ganancia - a.ganancia).slice(0, 5)
@@ -164,7 +172,7 @@ export default function OwnerDashboard() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             <KPICard
               label="Ventas"
               value={`$${kpi.ventas.toLocaleString('es-AR')}`}
@@ -183,6 +191,12 @@ export default function OwnerDashboard() {
               color="#1565C0"
             />
             <KPICard label="Margen bruto" value={`${kpi.margen}%`} icon="📈" color="#6A1B9A" />
+            <KPICard
+              label="Más pedido 🔥"
+              value={`${topProducto.emoji} ${topProducto.nombre}`}
+              sub={`${topProducto.sizeLabel} — ${topProducto.unidades} unidades`}
+              color="#C44D00"
+            />
           </div>
 
           <div className="grid md:grid-cols-3 gap-4">
