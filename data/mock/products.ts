@@ -3,13 +3,13 @@ import { Product, ProductCategory } from '@/types/product'
 // Precios ficticios (demo) — Pepinillo no publica precios en sus redes.
 export const PRODUCTS: Product[] = [
   // HAMBURGUESAS — cada una con variantes de tamaño (mismo groupId)
-  { id: 'hb-01-simple', groupId: 'hb-01', name: 'Cheeseburger', sizeLabel: 'Simple', description: 'Medallón 120gr., cheddar x2, cebolla brunoise, ketchup', category: 'hamburguesas', price: 8500, emoji: '🍔' },
-  { id: 'hb-01-doble', groupId: 'hb-01', name: 'Cheeseburger', sizeLabel: 'Doble', description: 'Medallón 120gr., cheddar x2, cebolla brunoise, ketchup', category: 'hamburguesas', price: 11500, emoji: '🍔' },
-  { id: 'hb-01-triple', groupId: 'hb-01', name: 'Cheeseburger', sizeLabel: 'Triple', description: 'Medallón 120gr., cheddar x2, cebolla brunoise, ketchup', category: 'hamburguesas', price: 14500, emoji: '🍔' },
+  { id: 'hb-01-simple', groupId: 'hb-01', name: 'Cheeseburger', sizeLabel: 'Simple', description: 'Medallón 120gr., cheddar x2, cebolla brunoise, ketchup', category: 'hamburguesas', price: 8500, emoji: '🍔', imageUrl: '/products/cheeseburger.jpeg' },
+  { id: 'hb-01-doble', groupId: 'hb-01', name: 'Cheeseburger', sizeLabel: 'Doble', description: 'Medallón 120gr., cheddar x2, cebolla brunoise, ketchup', category: 'hamburguesas', price: 11500, emoji: '🍔', imageUrl: '/products/cheeseburger.jpeg' },
+  { id: 'hb-01-triple', groupId: 'hb-01', name: 'Cheeseburger', sizeLabel: 'Triple', description: 'Medallón 120gr., cheddar x2, cebolla brunoise, ketchup', category: 'hamburguesas', price: 14500, emoji: '🍔', imageUrl: '/products/cheeseburger.jpeg' },
 
-  { id: 'hb-02-simple', groupId: 'hb-02', name: 'Clásica', sizeLabel: 'Simple', description: 'Medallón 120gr., cheddar x1, lechuga, tomate, mayonesa especial', category: 'hamburguesas', price: 8000, emoji: '🍔' },
-  { id: 'hb-02-doble', groupId: 'hb-02', name: 'Clásica', sizeLabel: 'Doble', description: 'Medallón 120gr., cheddar x1, lechuga, tomate, mayonesa especial', category: 'hamburguesas', price: 11000, emoji: '🍔' },
-  { id: 'hb-02-triple', groupId: 'hb-02', name: 'Clásica', sizeLabel: 'Triple', description: 'Medallón 120gr., cheddar x1, lechuga, tomate, mayonesa especial', category: 'hamburguesas', price: 14000, emoji: '🍔' },
+  { id: 'hb-02-simple', groupId: 'hb-02', name: 'Clásica', sizeLabel: 'Simple', description: 'Medallón 120gr., cheddar x1, lechuga, tomate, mayonesa especial', category: 'hamburguesas', price: 8000, emoji: '🍔', imageUrl: '/products/clasica.jpeg' },
+  { id: 'hb-02-doble', groupId: 'hb-02', name: 'Clásica', sizeLabel: 'Doble', description: 'Medallón 120gr., cheddar x1, lechuga, tomate, mayonesa especial', category: 'hamburguesas', price: 11000, emoji: '🍔', imageUrl: '/products/clasica.jpeg' },
+  { id: 'hb-02-triple', groupId: 'hb-02', name: 'Clásica', sizeLabel: 'Triple', description: 'Medallón 120gr., cheddar x1, lechuga, tomate, mayonesa especial', category: 'hamburguesas', price: 14000, emoji: '🍔', imageUrl: '/products/clasica.jpeg' },
 
   { id: 'hb-03-simple', groupId: 'hb-03', name: 'B.E.C.', sizeLabel: 'Simple', description: 'Medallón 120gr., queso azul, cebolla y champignon a la manteca, salsa BEC', category: 'hamburguesas', price: 9500, emoji: '🍔' },
   { id: 'hb-03-doble', groupId: 'hb-03', name: 'B.E.C.', sizeLabel: 'Doble', description: 'Medallón 120gr., queso azul, cebolla y champignon a la manteca, salsa BEC', category: 'hamburguesas', price: 12500, emoji: '🍔' },
